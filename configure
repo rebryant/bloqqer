@@ -1,0 +1,46 @@
+#!/bin/sh
+debug=no
+log=no
+experimental=no
+solver=no
+competition=no
+DEPQBF=../qdpll
+while [ $# -gt 0 ]
+do
+  case x"$1" in
+    x-h) echo "usage: configure [-h][-g][-l][-s]"; exit 0;;
+    x-g) debug=yes;;
+    x-l) log=yes;;
+    x-s) solver=yes;;
+    x-c) competition=yes; solver=yes;;
+    *) echo "*** configure: unknown command line option '$1' (try '-h')"
+       exit 1
+       ;;
+  esac
+  shift
+done
+
+CFLAGS="-Wall"
+[ $log = no ] && CFLAGS="$CFLAGS -DNLOG"
+[ $competition = yes ] && CFLAGS="$CFLAGS -DCOMP"
+if [ $solver = yes ]
+then 
+  if [ -d $DEPQBF ] && [ -d $LINGELING ]
+  then 
+    LFLAGS="$LFLAGS -DSOLVER -L${DEPQBF} -lqdpll -I${DEPQBF}  "
+  else
+    echo "solver not found; set path variables for depqbf"
+    exit 1
+  fi
+fi
+if [ $debug = yes ]
+then
+  CFLAGS="$CFLAGS -g"
+else
+  CFLAGS="$CFLAGS -DNDEBUG -O3"
+fi
+echo "gcc $CFLAGS $LFLAGS"
+rm -f makefile
+sed \
+  -e "s,@LFLAGS@,$LFLAGS," \
+  -e "s,@CFLAGS@,$CFLAGS," makefile.in > makefile

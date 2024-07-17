@@ -1,0 +1,46 @@
+These are the sources of our QBF preprocessor Bloqqer.
+
+./configure && make
+
+-----------------
+
+Bloqqer is described in our CADE'11 paper:
+
+A. Biere, F. Lonsing, M. Seidl
+Quantified Blocked Clause Elimination.
+Proc. CADE'11.
+
+
+
+Certificates and function extraction from Bloqqer are described in our 
+DATE'14, IJCAR'14, and FMCAD'14 papers:
+
+M. Seidl, R. Könighofer 
+Partial witnesses from preprocessed quantified Boolean formulas.
+Proc. DATE'14
+
+M. Heule, M. Seidl, A. Biere
+Efficient Extraction of Skolem Functions from QRAT Proofs. 
+Proc. FMCAD'14
+
+M. Heule, M. Seidl, A. Biere
+A Unified Proof System for QBF Preprocessing.
+Proc. IJCAR'14
+
+
+
+
+------------------
+
+See COPYING for more details on the permission to use this software.
+All rights are reserved.  No warranty is implied.
+
+------------------
+
+For questions or bug reports contact Martina Seidl (martina.seidl@jku.at)
+
+
+
+
+
+
